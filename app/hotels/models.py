@@ -1,15 +1,15 @@
 import sqlalchemy as sa
 from app.database import Base
-from sqlalchemy import Column, Integer, String, JSON
 
 
 class Hotels(Base):
+
     __tablename__ = 'hotels'
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    location = Column(String, nullable=False)
-    services = Column(JSON)
-    rooms_quantity = Column(Integer, nullable=False)
-    image_id = Column(Integer)
+    id = sa.Column(sa.Integer, primary_key=True)
+    name = sa.Column(sa.String, nullable=False)
+    location = sa.Column(sa.String(100), nullable=False)
+    services = sa.Column(sa.JSON)
+    rooms_quantity = sa.Column(sa.Integer, nullable=False)
+    image_id = sa.Column(sa.Integer)
 

@@ -3,7 +3,6 @@ from typing import Optional
 from datetime import date
 from pydantic import BaseModel
 
-
 app = FastAPI()
 
 
@@ -19,17 +18,20 @@ class HotelSearchArgs:
         self.date_to = date_to
         self.stars = stars
 
+
 @app.get("/hotels", description='Получить список отелей', tags=['Отели'])
 async def get_hotels(
     search_args: HotelSearchArgs = Depends()
 ):
     return search_args
 
+
 # Создание pydantic схемы брони
 class SBooking(BaseModel):
     room_id: int
     date_from: date
     date_to: date
+
 
 @app.post("/bookings", description='Создать бронь номера', tags=['Бронирование'])
 def add_booking(booking: SBooking):
