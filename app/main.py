@@ -2,8 +2,13 @@ from fastapi import FastAPI, Query, Depends
 from typing import Optional
 from datetime import date
 from pydantic import BaseModel
+from app.bookings.router import router as booking_router
+
 
 app = FastAPI()
+
+
+app.include_router(booking_router)
 
 
 class HotelSearchArgs:
@@ -26,13 +31,3 @@ async def get_hotels(
     return search_args
 
 
-# Создание pydantic схемы брони
-class SBooking(BaseModel):
-    room_id: int
-    date_from: date
-    date_to: date
-
-
-@app.post("/bookings", description='Создать бронь номера', tags=['Бронирование'])
-def add_booking(booking: SBooking):
-    return booking
