@@ -2,7 +2,7 @@ import sqlalchemy as sa
 from app.database import Base
 
 
-class Booking(Base):
+class Bookings(Base):
 
     __tablename__ = 'bookings'
 

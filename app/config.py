@@ -11,10 +11,15 @@ class Settings(BaseSettings):
 
     @root_validator(skip_on_failure=True)
     def get_database_url(cls, values):
-        values['DATABASE_URL'] = f"postgresql+asyncpg://{values['DB_USER']}:{values['DB_PASS']}@{values['DB_HOST']}:{values['DB_PORT']}/{values['DB_NAME']}"
+        values[
+            'DATABASE_URL'] = f"postgresql+asyncpg://{values['DB_USER']}:{values['DB_PASS']}@{values['DB_HOST']}:{values['DB_PORT']}/{values['DB_NAME']}"
         return values
+
+    AUTH_KEY: str
+    ALGORITHM: str
 
     class Config:
         env_file = ".env"
+
 
 settings = Settings()

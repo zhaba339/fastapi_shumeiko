@@ -1,7 +1,8 @@
 import sqlalchemy as sa
 from app.database import Base
 
-class Room(Base):
+
+class Rooms(Base):
 
     __tablename__ = 'rooms'
 
@@ -13,4 +14,3 @@ class Room(Base):
     services = sa.Column(sa.JSON, nullable=True)
     quantity = sa.Column(sa.Integer, nullable=False)
     image_id = sa.Column(sa.Integer, nullable=True)
-
