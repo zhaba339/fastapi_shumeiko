@@ -6,9 +6,9 @@ class SHotel(BaseModel):
     id: int
     name: str
     location: str
-    services: json
+    services: dict
     rooms_quantity: int
     image_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

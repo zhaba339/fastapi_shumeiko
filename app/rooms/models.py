@@ -1,10 +1,13 @@
 import sqlalchemy as sa
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 from app.database import Base
 
 
 class Rooms(Base):
 
     __tablename__ = 'rooms'
+    __table_args__ = {'extend_existing': True}
 
     id = sa.Column(sa.Integer, primary_key=True)
     hotel_id = sa.Column(sa.Integer, sa.ForeignKey('hotels.id'))

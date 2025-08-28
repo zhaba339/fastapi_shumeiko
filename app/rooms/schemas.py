@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+from app.hotels.schemas import SHotel
+
 
 class SRoom(BaseModel):
     id: int
@@ -11,4 +13,4 @@ class SRoom(BaseModel):
     image_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

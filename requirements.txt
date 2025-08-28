@@ -1,5 +1,13 @@
 fastapi[all]
+uvicorn
 pydantic
 sqlalchemy
 alembic
 pydantic_settings
+redis
+starlette
+asyncio
+celery
+pillow
+flower
+grafana

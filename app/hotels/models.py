@@ -1,4 +1,5 @@
 import sqlalchemy as sa
+from sqlalchemy.orm import relationship
 from app.database import Base
 
 
@@ -12,4 +13,3 @@ class Hotels(Base):
     services = sa.Column(sa.JSON)
     rooms_quantity = sa.Column(sa.Integer, nullable=False)
     image_id = sa.Column(sa.Integer)
-

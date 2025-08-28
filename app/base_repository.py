@@ -1,5 +1,8 @@
 from app.database import async_session_maker
 from sqlalchemy import select, insert, delete
+from sqlalchemy.orm import sessionmaker
+from app.hotels.models import Hotels
+from app.rooms.models import Rooms
 
 
 class BaseRepository:
@@ -15,14 +18,17 @@ class BaseRepository:
     @classmethod
     async def find_one_or_none(cls, **filters_by):
         async with async_session_maker() as session:
-            query = select(cls.model).filter_by(**filters_by)
-            result = await session.execute(query)
-            return result.scalar_one_or_none()
+            try:
+                query = select(cls.model).filter_by(**filters_by)
+                result = await session.execute(query)
+                return result.scalar_one_or_none()
+            except Exception as e:
+                raise e
 
     @classmethod
-    async def find_all(cls):
+    async def find_all(cls, **filters_by):
         async with async_session_maker() as session:
-            query = select(cls.model)
+            query = select(cls.model).filter_by(**filters_by)
             result = await session.execute(query)
             return result.scalars().all()
 
